@@ -1,0 +1,81 @@
+{
+    "configurations": [
+        {
+            "name": "CMSSW",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${env:CMSSW_BASE}/src/**",
+                "${env:CMSSW_RELEASE_BASE}/src/**",
+                "${env:ROOTSYS}/include/**",
+                "${env:ROOTSYS}/include/root/**",
+                "/usr/include/**",
+                "/usr/include/c++/**",
+                "/usr/include/x86_64-linux-gnu/**",
+                "/usr/local/include/**",
+                "/opt/rh/devtoolset-*/root/usr/include/**",
+                "${env:CMSSW_BASE}/src/llp_analyzer/**",
+                "${env:CMSSW_BASE}/src/run3_llp_analyzer/**",
+                "${env:CMSSW_BASE}/external/*/*/include/**",
+                "${env:CMSSW_RELEASE_BASE}/external/*/*/include/**",
+                "${env:CMSSW_BASE}/lib/**",
+                "${env:CMSSW_RELEASE_BASE}/lib/**",
+                "${env:CMSSW_BASE}/cfipython/**",
+                "${env:CMSSW_RELEASE_BASE}/cfipython/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "PROJECT_NAME=\"run3_llp_analyzer\"",
+                "PROJECT_VERSION=\"1.0.0\"",
+                "GNU_GCC",
+                "__GNUC__",
+                "__cplusplus=201703L",
+                "_GNU_SOURCE",
+                "__ROOT__",
+                "R__HAVE_CONFIG",
+                "CMSSW_GIT_HASH=\"CMSSW_14_1_0_pre4\"",
+                "CMSSW_VERSION=\"CMSSW_14_1_0_pre4\""
+            ],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerArgs": [
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "-std=c++17",
+                "-pthread",
+                "-m64",
+                "-pipe",
+                "-O2",
+                "-felide-constructors",
+                "-fmessage-length=0",
+                "-Wall",
+                "-Wno-non-template-friend",
+                "-Wno-long-long",
+                "-Wreturn-type",
+                "-Wunused",
+                "-Wparentheses",
+                "-Wno-deprecated",
+                "-Werror=overflow",
+                "-Wno-attributes",
+                "-fdiagnostics-show-option"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "${env:CMSSW_BASE}/src",
+                    "${env:CMSSW_RELEASE_BASE}/src",
+                    "${env:ROOTSYS}/include",
+                    "/usr/include",
+                    "/usr/local/include"
+                ],
+                "limitSymbolsToIncludedHeaders": false,
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+            }
+        }
+    ],
+    "version": 4
+} 

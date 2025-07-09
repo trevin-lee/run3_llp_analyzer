@@ -250,7 +250,7 @@ public :
    // Int_t           cscRechitsQuality[20000];   //[ncscRechits]
    Int_t           cscRechitsChamber[20000];   //[ncscRechits]
    Int_t           cscRechitsStation[20000];   //[ncscRechits]
-   // Int_t           cscRechitsClusterId[20000];   //[ncscRechits]
+   Int_t           cscRechitsClusterId[20000];   //[ncscRechits]
    // Int_t           cscRechitsChannels[20000];   //[ncscRechits]
    // UInt_t          cscRechitsNStrips[20000];   //[ncscRechits]
    // Int_t           cscRechitsHitWire[20000];   //[ncscRechits]
@@ -1046,7 +1046,7 @@ public :
    // TBranch        *b_cscRechitsQuality;   //!
    TBranch        *b_cscRechitsChamber;   //!
    TBranch        *b_cscRechitsStation;   //!
-   // TBranch        *b_cscRechitsClusterId;   //!
+   TBranch        *b_cscRechitsClusterId;   //!
    // TBranch        *b_cscRechitsChannels;   //!
    // TBranch        *b_cscRechitsNStrips;   //!
    // TBranch        *b_cscRechitsHitWire;   //!
@@ -1917,7 +1917,7 @@ void llp_event::Init(TTree *tree)
    // fChain->SetBranchAddress("cscRechitsQuality", cscRechitsQuality, &b_cscRechitsQuality);
    fChain->SetBranchAddress("cscRechitsChamber", cscRechitsChamber, &b_cscRechitsChamber);
    fChain->SetBranchAddress("cscRechitsStation", cscRechitsStation, &b_cscRechitsStation);
-   // fChain->SetBranchAddress("cscRechitsClusterId", cscRechitsClusterId, &b_cscRechitsClusterId);
+   fChain->SetBranchAddress("cscRechitsClusterId", cscRechitsClusterId, &b_cscRechitsClusterId);
    // fChain->SetBranchAddress("cscRechitsChannels", cscRechitsChannels, &b_cscRechitsChannels);
    // fChain->SetBranchAddress("cscRechitsNStrips", cscRechitsNStrips, &b_cscRechitsNStrips);
    // fChain->SetBranchAddress("cscRechitsHitWire", cscRechitsHitWire, &b_cscRechitsHitWire);

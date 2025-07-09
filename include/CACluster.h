@@ -27,16 +27,15 @@ struct cluster
   float Me11Ratio, Me12Ratio;
   float XSpread, YSpread, ZSpread, RSpread, DeltaRSpread, XYSpread, TSpread, TSpreadWeightedAll, EtaSpread, EtaPhiSpread, PhiSpread, MajorAxis, MinorAxis, SkewX, SkewY, SkewZ, KurtX, KurtY, KurtZ;
   int nXY, nZ;
-
 };
 
 typedef struct Rechits_
 {
-    float x, y, z, t, twire;  // X, Y, Z position
-    float eta,phi;
-    float dirX, dirY, dirZ;
+  float x, y, z, t, twire;  // X, Y, Z position
+  float eta,phi;
+  float dirX, dirY, dirZ;
   int station, chamber, layer, superlayer, wheel; //superlayer and wheel exist only for DT
-    int clusterID;  // clustered ID
+  int clusterID;  // clustered ID
 }Rechits;
 
 class CACluster {

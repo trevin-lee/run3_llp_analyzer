@@ -62,23 +62,25 @@ public:
 
   //csc
   int           nCscRechits;
+  int           cscRechitsClusterId[N_MAX_CSCRECHITS];   //[nCscRechits]
+  int           dtRechitsClusterId[N_MAX_CSCRECHITS];
   int           nCscRings;
   int           nDTRechits;
   int           nDtRings;
-  bool HLT_CscCluster100_PNetTauhPFJet10_Loose;
-  bool HLT_CscCluster100_Ele5;
-  bool HLT_CscCluster100_Mu5;
-  bool HLT_CscCluster50_Photon30Unseeded;
-  bool HLT_CscCluster50_Photon20Unseeded;
-  bool HLT_PFMET120_PFMHT120_IDTight;
+  bool          HLT_CscCluster100_PNetTauhPFJet10_Loose;
+  bool          HLT_CscCluster100_Ele5;
+  bool          HLT_CscCluster100_Mu5;
+  bool          HLT_CscCluster50_Photon30Unseeded;
+  bool          HLT_CscCluster50_Photon20Unseeded;
+  bool          HLT_PFMET120_PFMHT120_IDTight;
 
-  float MetTriggerEff;
-  float MetTriggerEffUp;
-  float MetTriggerEffDown;
+  float         MetTriggerEff;
+  float         MetTriggerEffUp;
+  float         MetTriggerEffDown;
 
   int           nDtRechitClusters;
   int           nDtRechitClusters_nocut;
-  bool           dtRechitClusterOverlap[N_MAX_CSC];
+  bool          dtRechitClusterOverlap[N_MAX_CSC];
   int           dtRechitClusterNSegStation1[N_MAX_CSC];
   int           dtRechitClusterNSegStation2[N_MAX_CSC];
   int           dtRechitClusterNSegStation3[N_MAX_CSC];
@@ -102,7 +104,7 @@ public:
   int           dtRechitCluster_match_MB1Seg_0p4[N_MAX_CSC];
   int           dtRechitCluster_match_MB1Seg_0p5[N_MAX_CSC];
   int           dtRechitCluster_match_RPCBx_dPhi0p5[N_MAX_CSC];
-  int         dtRechitCluster_match_RPChits_dPhi0p5[N_MAX_CSC];
+  int           dtRechitCluster_match_RPChits_dPhi0p5[N_MAX_CSC];
 
   int           dtRechitCluster_match_RB1_0p4[N_MAX_CSC];
   int           dtRechitCluster_match_RB1_dPhi0p5[N_MAX_CSC];
@@ -116,15 +118,15 @@ public:
   float         dtRechitCluster_match_gLLP_phi[N_MAX_CSC];
   float         dtRechitCluster_match_gLLP_decay_r[N_MAX_CSC];
   float         dtRechitCluster_match_gLLP_decay_z[N_MAX_CSC];
-  bool         dtRechitCluster_match_gLLP_csc[N_MAX_CSC];
-  bool         dtRechitCluster_match_gLLP_dt[N_MAX_CSC];
+  bool          dtRechitCluster_match_gLLP_csc[N_MAX_CSC];
+  bool          dtRechitCluster_match_gLLP_dt[N_MAX_CSC];
   float         dtRechitCluster_match_gLLP_e[N_MAX_CSC];
 
   float         dtRechitClusterX[N_MAX_CSC];   //[nCsc]
   float         dtRechitClusterY[N_MAX_CSC];   //[nCsc]
   float         dtRechitClusterZ[N_MAX_CSC];   //[nCsc]
 
-  int         dtRechitClusterWheel[N_MAX_CSC];
+  int           dtRechitClusterWheel[N_MAX_CSC];
 
   float         dtRechitClusterEta[N_MAX_CSC];   //[nCsc]
   float         dtRechitClusterPhi[N_MAX_CSC];   //[nCsc]
@@ -139,7 +141,7 @@ public:
   float         dtRechitClusterMaxStationRatio[N_MAX_CSC];   //[nCsc]
   int           dtRechitClusterMaxStation[N_MAX_CSC];   //[nCsc]
   int           dtRechitClusterNStation10[N_MAX_CSC];
-  float          dtRechitClusterAvgStation10[N_MAX_CSC];
+  float         dtRechitClusterAvgStation10[N_MAX_CSC];
   float         dtRechitClusterMaxChamberRatio[N_MAX_CSC];   //[nCsc]
   int           dtRechitClusterMaxChamber[N_MAX_CSC];   //[nCsc]
   int           dtRechitClusterNChamber[N_MAX_CSC];
@@ -148,8 +150,8 @@ public:
   float         dtRechitClusterJetVetoPtJESDown[N_MAX_CSC];
   float         dtRechitClusterJetVetoPtJESUp[N_MAX_CSC];
   float         dtRechitClusterJetVetoE[N_MAX_CSC];
-  bool         dtRechitClusterJetVetoLooseId[N_MAX_CSC];
-  bool         dtRechitClusterJetVetoTightId[N_MAX_CSC];
+  bool          dtRechitClusterJetVetoLooseId[N_MAX_CSC];
+  bool          dtRechitClusterJetVetoTightId[N_MAX_CSC];
 
 
   float         dtRechitClusterMuonVetoPt[N_MAX_CSC];
@@ -160,12 +162,12 @@ public:
   bool          dtRechitClusterMuonVetoGlobal[N_MAX_CSC];
 
   float         dtRechitClusterMet_dPhi[N_MAX_CSC];
-  float        dtRechitClusterMetJESUp_dPhi[N_MAX_CSC];
-  float        dtRechitClusterMetJESDown_dPhi[N_MAX_CSC];
+  float         dtRechitClusterMetJESUp_dPhi[N_MAX_CSC];
+  float         dtRechitClusterMetJESDown_dPhi[N_MAX_CSC];
   float         dtRechitClusterPuppiMet_dPhi[N_MAX_CSC];
 
-  int         dtRechitClusternXY[N_MAX_CSC];
-  int         dtRechitClusternZ[N_MAX_CSC];
+  int           dtRechitClusternXY[N_MAX_CSC];
+  int           dtRechitClusternZ[N_MAX_CSC];
   float         dtRechitClusterXSpread[N_MAX_CSC];
   float         dtRechitClusterYSpread[N_MAX_CSC];
   float         dtRechitClusterZSpread[N_MAX_CSC];
@@ -199,8 +201,8 @@ public:
   float         cscRechitCluster_match_gLLP_phi[N_MAX_CSC];
   float         cscRechitCluster_match_gLLP_decay_r[N_MAX_CSC];
   float         cscRechitCluster_match_gLLP_decay_z[N_MAX_CSC];
-  bool         cscRechitCluster_match_gLLP_csc[N_MAX_CSC];
-  bool         cscRechitCluster_match_gLLP_dt[N_MAX_CSC];
+  bool          cscRechitCluster_match_gLLP_csc[N_MAX_CSC];
+  bool          cscRechitCluster_match_gLLP_dt[N_MAX_CSC];
   float         cscRechitCluster_match_gLLP_e[N_MAX_CSC];
 
 
@@ -215,8 +217,8 @@ public:
   float         cscRechitClusterEta[N_MAX_CSC];   //[nCsc]
   float         cscRechitClusterPhi[N_MAX_CSC];   //[nCsc]
   int           cscRechitClusterSize[N_MAX_CSC];
-  int         cscRechitClusternXY[N_MAX_CSC];
-  int         cscRechitClusternZ[N_MAX_CSC];
+  int           cscRechitClusternXY[N_MAX_CSC];
+  int           cscRechitClusternZ[N_MAX_CSC];
   float         cscRechitClusterXSpread[N_MAX_CSC];
   float         cscRechitClusterYSpread[N_MAX_CSC];
   float         cscRechitClusterZSpread[N_MAX_CSC];
