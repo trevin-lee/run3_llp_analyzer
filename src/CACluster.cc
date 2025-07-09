@@ -51,7 +51,7 @@ int CACluster::run()
     for (auto const& constituent : fjJet.constituents()) {
       auto index = constituent.user_index();
       if (index >= 0 && static_cast<unsigned int>(index) < m_points.size()) {
-        m_points[index].clusterID = nClusters;
+        m_points[index].clusterId = nClusters;
         rechits.push_back(m_points[index]);
       }
     }
@@ -68,7 +68,7 @@ void CACluster::clusterProperties()
     vector<Rechits> rechits;
     for(int j = 0; j < m_points.size(); j++)
     {
-      if (m_points[j].clusterID != i) continue;
+      if (m_points[j].clusterId != i) continue;
       rechits.push_back(m_points[j]);
     }
 
@@ -262,44 +262,44 @@ void CACluster::clusterProperties()
       // CSCs -> take only one Z value per each station
       
       if(rechit.superlayer > 0){ //hit in DT
-	//save nhits per wheel
-	if(abs(rechit.wheel) == 0){tmpCluster.nDtRechitsWheel0++;}
-	else if(abs(rechit.wheel) == 1){tmpCluster.nDtRechitsWheel1++;}
-	else if(abs(rechit.wheel) == 2){tmpCluster.nDtRechitsWheel2++;}
+        //save nhits per wheel
+        if(abs(rechit.wheel) == 0){tmpCluster.nDtRechitsWheel0++;}
+        else if(abs(rechit.wheel) == 1){tmpCluster.nDtRechitsWheel1++;}
+        else if(abs(rechit.wheel) == 2){tmpCluster.nDtRechitsWheel2++;}
 
-	if(rechit.superlayer == 1 || rechit.superlayer == 3){ //XY information
-	  XYSpread += (rechit.x - tmpCluster.x)*(rechit.y - tmpCluster.y);
-	  XSpread += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
-	  YSpread += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
-	  float radius = sqrt(pow(rechit.x, 2) + pow(rechit.y, 2));
-	  RSpread += pow(radius-sqrt(tmpCluster.x*tmpCluster.x+tmpCluster.y*tmpCluster.y),2);
-	  p3_x += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
-	  p4_x += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
-	  p3_y += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
-	  p4_y += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
-	  nXY++;
-	}
-	else if(rechit.superlayer == 2){ //Z information
-	  ZSpread += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
-	  p3_z += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
-	  p4_z += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
-	  nZ++;
-	}
-      }else{ //hit in CSC
-	XYSpread += (rechit.x - tmpCluster.x)*(rechit.y - tmpCluster.y);
-	XSpread += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
-	YSpread += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
-	float radius = sqrt(pow(rechit.x, 2) + pow(rechit.y, 2));
-	RSpread += pow(radius-sqrt(tmpCluster.x*tmpCluster.x+tmpCluster.y*tmpCluster.y),2);
-	p3_x += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
-	p4_x += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
-	p3_y += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
-	p4_y += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
-	nXY++;
-	ZSpread += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
-	p3_z += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
-	p4_z += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
-	nZ++;
+        if(rechit.superlayer == 1 || rechit.superlayer == 3){ //XY information
+          XYSpread += (rechit.x - tmpCluster.x)*(rechit.y - tmpCluster.y);
+          XSpread += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
+          YSpread += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
+          float radius = sqrt(pow(rechit.x, 2) + pow(rechit.y, 2));
+          RSpread += pow(radius-sqrt(tmpCluster.x*tmpCluster.x+tmpCluster.y*tmpCluster.y),2);
+          p3_x += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
+          p4_x += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
+          p3_y += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
+          p4_y += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
+          nXY++;
+        }
+        else if(rechit.superlayer == 2){ //Z information
+          ZSpread += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
+          p3_z += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
+          p4_z += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
+          nZ++;
+        }
+      } else { //hit in CSC
+        XYSpread += (rechit.x - tmpCluster.x)*(rechit.y - tmpCluster.y);
+        XSpread += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
+        YSpread += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
+        float radius = sqrt(pow(rechit.x, 2) + pow(rechit.y, 2));
+        RSpread += pow(radius-sqrt(tmpCluster.x*tmpCluster.x+tmpCluster.y*tmpCluster.y),2);
+        p3_x += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
+        p4_x += (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x) * (rechit.x - tmpCluster.x);
+        p3_y += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
+        p4_y += (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y) * (rechit.y - tmpCluster.y);
+        nXY++;
+        ZSpread += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
+        p3_z += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
+        p4_z += (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z) * (rechit.z - tmpCluster.z);
+        nZ++;
       }
 
       TSpread += (rechit.t - tmpCluster.tTotal) * (rechit.t - tmpCluster.tTotal);
@@ -389,7 +389,7 @@ void CACluster::clusterProperties()
 
 
 };
-void CACluster::sort_clusters() //only run sort after merg_clusters, or it will mess up the clusterID of the m_points
+void CACluster::sort_clusters() //only run sort after merg_clusters, or it will mess up the clusterId of the m_points
 {
   sort(clusters.begin(), clusters.end(), largest_nhit_cluster);
 }
@@ -435,12 +435,12 @@ void CACluster::merge_clusters()
       
       for(iter = m_points.begin(); iter != m_points.end(); ++iter)
       {
-        if ( iter->clusterID == cluster2 ){ //change the clusterID from cluster 2 to cluster1
-          iter->clusterID = cluster1;
+        if ( iter->clusterId == cluster2 ){ //change the clusterId from cluster 2 to cluster1
+          iter->clusterId = cluster1;
         }
-        if ( iter->clusterID > cluster2 )iter->clusterID = iter->clusterID-1; // change the cluster ID for all clusters beyond to ID-1
+        if ( iter->clusterId > cluster2 )iter->clusterId = iter->clusterId-1; // change the cluster ID for all clusters beyond to ID-1
 
-        if (iter->clusterID == cluster1) //recalculate the eta/phi position of the new cluster
+        if (iter->clusterId == cluster1) //recalculate the eta/phi position of the new cluster
         {
 
             if ( iter->superlayer == 2) //for DT rechits that only have coordinates in Z

@@ -35,8 +35,8 @@ typedef struct Rechits_
   float eta,phi;
   float dirX, dirY, dirZ;
   int station, chamber, layer, superlayer, wheel; //superlayer and wheel exist only for DT
-  int clusterID;  // clustered ID
-}Rechits;
+  int clusterId;  // clustered ID
+} Rechits;
 
 class CACluster {
 public:
@@ -50,6 +50,7 @@ public:
    
     vector<cluster> clusters;
     int nClusters;
+    vector<Rechits> m_points;  // Made public to access clustered points
     int run();
     void clusterProperties();
     void sort_clusters();
@@ -59,7 +60,6 @@ public:
     double deltaR(double eta1, double phi1, double eta2, double phi2);
 
 private:
-    vector<Rechits> m_points;
     unsigned int m_pointSize;
     unsigned int m_minPoints;
     float m_epsilon;

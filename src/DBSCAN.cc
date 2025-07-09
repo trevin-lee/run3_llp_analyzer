@@ -22,20 +22,20 @@ const double thePruneCut_ = 9.0;
 int DBSCAN::run()
 {
     fastjet::JetDefinition jet_def(fastjet::cambridge_algorithm, 0.4);
-    int clusterID = 1;
+    int clusterId = 1;
     vector<Point>::iterator iter;
     for(iter = m_points.begin(); iter != m_points.end(); ++iter)
     {
-        if ( iter->clusterID == UNCLASSIFIED )
+        if ( iter->clusterId == UNCLASSIFIED )
         {
-            if ( expandCluster(*iter, clusterID) != FAILURE )
+            if ( expandCluster(*iter, clusterId) != FAILURE )
             {
-                clusterID += 1;
+                clusterId += 1;
             }
         }
     }
-    nClusters = clusterID-1;
-    return (clusterID-1);
+    nClusters = clusterId-1;
+    return (clusterId-1);
 }
 void DBSCAN::clear_clusters(){
   // nClusters = 0;
@@ -69,7 +69,7 @@ int DBSCAN::result(){
 
   // for (unsigned int i = 0;i < m_pointSize;i++)
   // {
-  //   cscLabels.push_back(m_points[i].clusterID);
+  //   cscLabels.push_back(m_points[i].clusterId);
   //
   // }
   for(int i = 0; i < nClusters; i++)
@@ -85,7 +85,7 @@ int DBSCAN::result(){
     vector<Point>::iterator iter;
     for(iter = m_points.begin(); iter != m_points.end(); ++iter)
     {
-      if ( iter->clusterID == i+1 )
+      if ( iter->clusterId == i+1 )
       {
           if (iter->superlayer == 2) //for DT rechits that only have coordinates in Z
           {
@@ -238,7 +238,7 @@ int DBSCAN::clusterMoments()
     vector<Point>::iterator iter;
     for(iter = m_points.begin(); iter != m_points.end(); ++iter)
     {
-      if ( iter->clusterID == i+1 )
+      if ( iter->clusterId == i+1 )
       {
 
           m11 += (iter->eta-clusterEta[i])*(iter->eta-clusterEta[i]);
@@ -335,7 +335,7 @@ void DBSCAN::sort_clusters()
     tmpCluster.nDtSegmentStation3 = 0;
     tmpCluster.nDtSegmentStation4 = 0;
     for(unsigned int l=0; l < m_pointSize; l++){
-      if (m_points[l].clusterID == i+1){
+      if (m_points[l].clusterId == i+1){
         cscStations.push_back(m_points[l].station);
         cscChambers.push_back(m_points[l].chamber);
         cscStations_copy.push_back(m_points[l].station);
@@ -583,17 +583,17 @@ void DBSCAN::merge_clusters()
       int count = 0;
       for(iter = m_points.begin(); iter != m_points.end(); ++iter)
       {
-        if ( iter->clusterID == cluster2+1 ){
-          iter->clusterID = cluster1+1;
+        if ( iter->clusterId == cluster2+1 ){
+          iter->clusterId = cluster1+1;
           count++;
         }
-        if ( iter->clusterID > cluster2+1 )iter->clusterID = iter->clusterID-1;
+        if ( iter->clusterId > cluster2+1 )iter->clusterId = iter->clusterId-1;
       }
       clusterEta.erase(clusterEta.begin() + cluster2);
       clusterPhi.erase(clusterPhi.begin() + cluster2);
       nClusters--;
       modified = true;
-      // can't use cscCluster, because its sorted, but the other vectors and clusterID are not sorted.
+      // can't use cscCluster, because its sorted, but the other vectors and clusterId are not sorted.
     }
   }
   clear_clusters(); // clear all the vectors, but nClusters is kept to keep track of the number of clusters.
@@ -610,7 +610,7 @@ int DBSCAN::vertexing()
 
     for(unsigned int j = 0;j < m_pointSize;j++)
     {
-      if ( m_points[j].clusterID == i+1 ){
+      if ( m_points[j].clusterId == i+1 ){
         vecCsc.SetXYZ(m_points[j].x, m_points[j].y, m_points[j].z);
         vecDir.SetXYZ(m_points[j].dirX, m_points[j].dirY, m_points[j].dirZ);
         double slope = (vecCsc.Perp() - (vecCsc+vecDir).Perp()) / (vecCsc.Z() - (vecCsc+vecDir).Z());
@@ -711,13 +711,13 @@ int DBSCAN::vertexing()
 }
 
 
-int DBSCAN::expandCluster(Point point, int clusterID)
+int DBSCAN::expandCluster(Point point, int clusterId)
 {
     vector<int> clusterSeeds = calculateCluster(point);//neighbors, including itself
 
     if ( clusterSeeds.size() < m_minPoints )
     {
-        point.clusterID = NOISE;
+        point.clusterId = NOISE;
         return FAILURE;
     }
     else//core points
@@ -727,7 +727,7 @@ int DBSCAN::expandCluster(Point point, int clusterID)
         //loop through neighbors of core points
         for( iterSeeds = clusterSeeds.begin(); iterSeeds != clusterSeeds.end(); ++iterSeeds)
         {
-            m_points.at(*iterSeeds).clusterID = clusterID;//setting all the neighbors to the same clusterID
+            m_points.at(*iterSeeds).clusterId = clusterId;//setting all the neighbors to the same clusterId
             //get the index of the core point itself
 
             // if (m_points.at(*iterSeeds).x == point.x && m_points.at(*iterSeeds).y == point.y && m_points.at(*iterSeeds).z == point.z )
@@ -749,14 +749,14 @@ int DBSCAN::expandCluster(Point point, int clusterID)
                 vector<int>::iterator iterNeighors;
                 for ( iterNeighors = clusterNeighors.begin(); iterNeighors != clusterNeighors.end(); ++iterNeighors )
                 {
-                    if ( m_points.at(*iterNeighors).clusterID == UNCLASSIFIED || m_points.at(*iterNeighors).clusterID == NOISE )
+                    if ( m_points.at(*iterNeighors).clusterId == UNCLASSIFIED || m_points.at(*iterNeighors).clusterId == NOISE )
                     {
-                        if ( m_points.at(*iterNeighors).clusterID == UNCLASSIFIED )
+                        if ( m_points.at(*iterNeighors).clusterId == UNCLASSIFIED )
                         {
                             clusterSeeds.push_back(*iterNeighors);
                             n = clusterSeeds.size();
                         }
-                        m_points.at(*iterNeighors).clusterID = clusterID;
+                        m_points.at(*iterNeighors).clusterId = clusterId;
                     }
                 }
             }

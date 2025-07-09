@@ -56,6 +56,7 @@ void TreeMuonSystemCombination::InitVariables()
   for( int i = 0; i < N_MAX_CSCRECHITS; i++ )
   {
     cscRechitsClusterId[i] = -999;
+    dtRechitsClusterId[i] = -999;
   }
   nCscRechitClusters = 0;
   nCscRechitClusters_nocut = 0;
@@ -227,8 +228,6 @@ void TreeMuonSystemCombination::InitVariables()
     dtRechitClusterZ[i] = -999.;
 
     dtRechitClusterWheel[i] = -999;
-
-
 
     dtRechitClusterEta[i] = -999.;
     dtRechitClusterPhi[i] = -999.;

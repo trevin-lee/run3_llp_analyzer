@@ -80,6 +80,7 @@ public:
 
   int           nDtRechitClusters;
   int           nDtRechitClusters_nocut;
+
   bool          dtRechitClusterOverlap[N_MAX_CSC];
   int           dtRechitClusterNSegStation1[N_MAX_CSC];
   int           dtRechitClusterNSegStation2[N_MAX_CSC];

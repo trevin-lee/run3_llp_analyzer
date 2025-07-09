@@ -58,7 +58,7 @@ typedef struct Point_
     float eta,phi;
     float dirX, dirY, dirZ;
     int station, chamber, layer, superlayer; //superlayer exists only for DT
-    int clusterID;  // clustered ID
+    int clusterId;  // clustered ID
 }Point;
 
 class DBSCAN {
@@ -111,7 +111,7 @@ public:
     void merge_clusters();//change cluster id of the points if the clusters are close, and clear all the vectors at the end.
     int vertexing();
     vector<int> calculateCluster(Point point);
-    int expandCluster(Point point, int clusterID);
+    int expandCluster(Point point, int clusterId);
     inline double calculateDistance(Point pointCore, Point pointTarget);
 
     int getTotalPointSize() {return m_pointSize;}
